@@ -88,7 +88,7 @@ export const deleteContact = async (req, res) => {
     }
 };
 
-export const deleteAllContact = async (req, res) => {
+export const deleteAllContacts = async (req, res) => {
 
     try {
 
