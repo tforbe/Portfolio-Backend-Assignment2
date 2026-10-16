@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import connectDB from './config/db.js';
 import contactRoutes from './routes/contactRoutes.js';
+import projectRoutes from './routes/projectRoutes.js';
 
 dotenv.config()
 
@@ -17,6 +18,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/contacts', contactRoutes);
+app.use('/api/projects', projectRoutes);
 
 const PORT = process.env.PORT || 5000; 
 
