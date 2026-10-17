@@ -16,11 +16,15 @@ import {
 
 const router = express.Router();
 
-// GET is public; POST and DELETE require valid token authentication
+
+router.post('/signin', signin)
+router.post('/signout', signout)
+
+// POST is public; GET and DELETE require valid token authentication
 router.route('/')
 
-    .get(getUsers)
-    .post(requireAuth, createUser)
+    .get(requireAuth, getUsers)
+    .post(createUser)
     .delete(requireAuth, removeAllUsers);
 
 // GET is public; PUT and DELETE require valid token authentication
@@ -30,7 +34,5 @@ router.route('/:id')
     .put(requireAuth, updateUser)
     .delete(requireAuth, deleteUser);
 
-router.post('/signin', signin)
-router.post('/signout', signout)
 export default router;
 
