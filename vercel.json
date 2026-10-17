@@ -9,5 +9,8 @@
     
     "src": "/users|projects|qualifications|contacts(.*)",
     "dest": "server.js"
-    }] 
+    },
+    {"src":"/(.*)",
+"dest":"server.js"}
+] 
 }
