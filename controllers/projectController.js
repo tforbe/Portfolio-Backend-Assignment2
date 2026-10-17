@@ -1,5 +1,6 @@
 import Project from '../models/Project.js';
 
+// Retrieves all project documents from the collection
 export const getProjects = async (req, res) => {
 
     try {
@@ -14,6 +15,7 @@ export const getProjects = async (req, res) => {
     }
 };
 
+// Creates a new project document entry in the database
 export const createProject = async (req, res) => {
 
     try {
@@ -27,8 +29,9 @@ export const createProject = async (req, res) => {
 
         res.status(400).json({ message: error.message });
     }
-};
+}; 
 
+// Fetches a single project document matching the specified ID
 export const getProjectById = async (req, res) => {
 
     try {
@@ -49,6 +52,7 @@ export const getProjectById = async (req, res) => {
     }
 };
 
+// Finds a specific project document by ID and updates its fields
 export const updateProject = async (req, res) => {
 
     try {
@@ -71,6 +75,7 @@ export const updateProject = async (req, res) => {
     }
 };
 
+// Removes a single project document matching the specified ID
 export const deleteProject = async (req, res) => {
 
     try {
@@ -91,6 +96,7 @@ export const deleteProject = async (req, res) => {
     }
 };
 
+// Deletes every document inside the projects collection entirely
 export const deleteAllProjects = async (req, res) => {
 
     try {

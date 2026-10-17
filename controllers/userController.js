@@ -1,6 +1,7 @@
 import User from '../models/User.js';
 import jwt from 'jsonwebtoken';
 
+// Retrieves all registered user accounts from the database
 export const getUsers = async (req, res) => {
 
     try {
@@ -14,6 +15,7 @@ export const getUsers = async (req, res) => {
     }
 };
 
+// Fetches a single user document matching the provided ID
 export const getUserById = async (req, res) => {
     
     try {
@@ -28,6 +30,7 @@ export const getUserById = async (req, res) => {
     }
 };
 
+// Registers a new user account and saves it to the database
 export const createUser = async (req, res) => {
     
     const { name, email, password } = req.body;
@@ -44,6 +47,7 @@ export const createUser = async (req, res) => {
     }
 };
 
+// Finds a specific user by ID and updates their account profile
 export const updateUser = async (req, res) => {
     
     try {
@@ -63,6 +67,7 @@ export const updateUser = async (req, res) => {
     }
 };
 
+// Removes a single user account matching the specified ID
 export const deleteUser = async (req, res) => {
     
     try {
@@ -78,6 +83,7 @@ export const deleteUser = async (req, res) => {
     }
 };
 
+// Permanently deletes every user record from the collection
 export const removeAllUsers = async (req, res) => {
     
     try {
@@ -91,6 +97,7 @@ export const removeAllUsers = async (req, res) => {
     }
 };
 
+// Authenticates credentials and returns a valid signed JWT access token
 export const signin = async (req,res) => {
 
     const {email, password } = req.body;
@@ -113,9 +120,8 @@ export const signin = async (req,res) => {
     } catch (error) {
         console.error(error);
         res.status(500).json({message: "an issue has occurred"})
-    }
-};
+    }}; 
 
+// Invalidates the current user session context and returns a signout confirmation
 export const signout = async (req, res) => {
-    res.status(200).json({ message: "signed out"})
-}
+    res.status(200).json({ message: "signed out"})}

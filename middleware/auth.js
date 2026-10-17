@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
 
 
+// Verifies that an incoming request contains a valid Bearer token header
 export const requireAuth = async (req, res, next) => {
 
     try {
@@ -12,6 +13,7 @@ export const requireAuth = async (req, res, next) => {
         }
         const token = authHeader.split(' ')[1];
         
+        // Decrypts the token string using the secret key to authenticate the user session
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
         req.user = decoded;

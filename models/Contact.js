@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 
+// defines the data base structure 
 const contactSchema = new mongoose.Schema({
 
     firstname: {
@@ -22,6 +23,7 @@ const contactSchema = new mongoose.Schema({
     }
 });
 
+// compiles the schema 
 const Contact = mongoose.model('Contact', contactSchema);
 
 export default Contact;

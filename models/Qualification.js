@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+// Defines the data and schema rules for qualifications
 const qualificationSchema = new mongoose.Schema({
 
     title: {
@@ -39,6 +40,7 @@ const qualificationSchema = new mongoose.Schema({
     }
 });
 
+// Creates and exports the Qualification model
 const Qualification = mongoose.model("Qualification", qualificationSchema);
 
 export default Qualification;

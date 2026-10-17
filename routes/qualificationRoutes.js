@@ -14,13 +14,15 @@ import {
 
 const router = express.Router();
 
+// GET is public; POST and DELETE require valid token authentication
 router.route('/')
 
     .get(getQualifications)
     .post(requireAuth, createQualification)
     .delete(requireAuth, deleteAllQualifications);
 
-router.route('/:id')
+// GET is public; PUT and DELETE require valid token authentication
+    router.route('/:id')
 
     .get(getQualificationById)
     .put(requireAuth, updateQualification)

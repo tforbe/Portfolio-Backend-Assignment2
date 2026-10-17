@@ -14,12 +14,14 @@ import {
 
 const router = express.Router();
 
+// GET is public; POST and DELETE require valid token authentication
 router.route('/')
 
     .get(getProjects)
     .post(requireAuth, createProject)
     .delete(requireAuth, deleteAllProjects);
 
+// GET is public; PUT and DELETE require valid token authentication
 router.route('/:id')
 
     .get(getProjectById)

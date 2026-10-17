@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import bcrypt from 'bcryptjs';
 
+// Defines the authentication schema for registered users
 const userSchema = new mongoose.Schema({
 
     name: {
@@ -36,6 +37,7 @@ const userSchema = new mongoose.Schema({
     }
 });
 
+// Pre-save middleware hook that automatically hashes the password before storing it
 userSchema.pre('save',async function(next) {
 
     if (!this.isModified('password')) return;
@@ -45,11 +47,13 @@ userSchema.pre('save',async function(next) {
     
 });
 
+// helper method to safely check login passwords against the hashed string
 userSchema.methods.comparePassword = async function(candidatePassword) {
     
     return await bcrypt.compare(candidatePassword, this.password);
 }
 
+// Registers and compiles the User authentication schema configuration into a model
 const User = mongoose.model("User", userSchema);
 
 

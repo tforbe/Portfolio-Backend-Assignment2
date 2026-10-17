@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 
+// Defines the structure and validation requirements 
 const projectSchema = new mongoose.Schema({
 
     title: {
@@ -39,6 +40,7 @@ const projectSchema = new mongoose.Schema({
     }
 }); 
 
+// Creates and exports the Project model
 const Project = mongoose.model('Project', projectSchema);
 
 export default Project;

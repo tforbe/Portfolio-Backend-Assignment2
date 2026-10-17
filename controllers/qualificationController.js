@@ -1,5 +1,6 @@
 import Qualification from '../models/Qualification.js';
 
+// Retrieves all qualification records from the database collection
 export const getQualifications = async (req, res) => {
 
     try {
@@ -11,8 +12,9 @@ export const getQualifications = async (req, res) => {
 
         res.status(500).json({ message: error.message });
     }
-};
+}; 
 
+// Validates body details and creates a new qualification record entry
 export const createQualification = async (req, res) => {
 
     try {
@@ -27,6 +29,7 @@ export const createQualification = async (req, res) => {
     }
 };
 
+// Fetches a single qualification record matching the provided ID parameter
 export const getQualificationById = async (req, res) => {
 
     try {
@@ -46,6 +49,7 @@ export const getQualificationById = async (req, res) => {
     }
 };
 
+// Finds a specific qualification document by ID and updates its fields
 export const updateQualification = async (req, res) => {
 
     try {
@@ -68,6 +72,7 @@ export const updateQualification = async (req, res) => {
     }
 };
 
+// Removes a single qualification record matching the specified ID parameter
 export const deleteQualification = async (req, res) => {
     
     try {
@@ -87,6 +92,7 @@ export const deleteQualification = async (req, res) => {
     }
 };
 
+// Wipes out every document from the qualifications collection entirely
 export const deleteAllQualifications = async (req, res) => {
     
     try {
