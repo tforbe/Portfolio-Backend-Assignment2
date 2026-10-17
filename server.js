@@ -19,10 +19,10 @@ app.get('/', (req, res) => {
     res.json({ message: "my portfolio"});
 });
 
-app.use('/api/contacts', contactRoutes);
-app.use('/api/projects', projectRoutes);
-app.use('/api/qualifications', qualificationRoutes);
-app.use('/api/users', userRoutes);
+app.use('/contacts', contactRoutes);
+app.use('/projects', projectRoutes);
+app.use('/qualifications', qualificationRoutes);
+app.use('/users', userRoutes);
 
 const PORT = process.env.PORT || 5000; 
 
