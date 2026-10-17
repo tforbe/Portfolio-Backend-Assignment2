@@ -1,4 +1,5 @@
 import User from '../models/User.js';
+import jwt from 'jsonwebtoken';
 
 export const getUsers = async (req, res) => {
 
@@ -67,6 +68,7 @@ export const deleteUser = async (req, res) => {
     try {
     
         const deletedUser = await User.findByIdAndDelete(req.params.id);
+        
         if (!deletedUser) return res.status(404).json({ message: "User not found" });
         res.status(200).json({ message: "User deleted successfully" });
     } 
@@ -88,3 +90,32 @@ export const removeAllUsers = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
+
+export const signin = async (req,res) => {
+
+    const {email, password } = req.body;
+
+    try{
+        
+        const user = await User.findOne({ email });
+        if (!user) return res.status(404).json({ message:"user not found"});
+
+        const isPasswordRight = await user.comparePassword(password);
+        if (!isPasswordRight) return res.status(400).json({message:"Invalid credentials"});
+
+        const token = jwt.sign(
+            { email: user.email, id: user._id},
+            process.env.JWT_SECRET,
+            { expiresIn: '1h' });
+        
+        res.status(200).json({ result: user, token });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({message: "an issue has occurred"})
+    }
+};
+
+export const signout = async (req, res) => {
+    res.status(200).json({ message: "signed out"})
+}

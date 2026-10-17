@@ -1,4 +1,5 @@
 import express from 'express';
+import { requireAuth } from '../middleware/auth.js';
 
 import { 
 
@@ -7,7 +8,9 @@ import {
     removeAllUsers, 
     getUserById, 
     updateUser, 
-    deleteUser 
+    deleteUser,
+    signin,
+    signout
 
 } from '../controllers/userController.js';
 
@@ -16,13 +19,16 @@ const router = express.Router();
 router.route('/')
 
     .get(getUsers)
-    .post(createUser)
-    .delete(removeAllUsers);
+    .post(requireAuth, createUser)
+    .delete(requireAuth, removeAllUsers);
 
 router.route('/:id')
 
     .get(getUserById)
-    .put(updateUser)
-    .delete(deleteUser);
+    .put(requireAuth, updateUser)
+    .delete(requireAuth, deleteUser);
 
+router.post('/signin', signin)
+router.post('/signout', signout)
 export default router;
+

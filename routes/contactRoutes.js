@@ -1,4 +1,5 @@
 import express from 'express';
+import { requireAuth } from '../middleware/auth.js';
 
 import { 
 
@@ -16,13 +17,13 @@ const router = express.Router();
 router.route('/')
     
     .get(getContacts)
-    .post(createContact)
-    .delete(deleteAllContacts);
+    .post(requireAuth, createContact)
+    .delete(requireAuth, deleteAllContacts);
 
 router.route('/:id')
 
     .get(getContactById)
-    .put(updateContact)
-    .delete(deleteContact)
+    .put(requireAuth, updateContact)
+    .delete(requireAuth, deleteContact)
 
 export default router;  

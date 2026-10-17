@@ -1,4 +1,6 @@
 import express from 'express';
+import { requireAuth } from '../middleware/auth.js';
+
 import { 
 
     getQualifications, 
@@ -15,13 +17,13 @@ const router = express.Router();
 router.route('/')
 
     .get(getQualifications)
-    .post(createQualification)
-    .delete(deleteAllQualifications);
+    .post(requireAuth, createQualification)
+    .delete(requireAuth, deleteAllQualifications);
 
 router.route('/:id')
 
     .get(getQualificationById)
-    .put(updateQualification)
-    .delete(deleteQualification);
+    .put(requireAuth, updateQualification)
+    .delete(requireAuth, deleteQualification);
 
 export default router;

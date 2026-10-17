@@ -1,4 +1,5 @@
 import express from 'express';
+import { requireAuth } from '../middleware/auth.js';
 
 import { 
 
@@ -16,13 +17,13 @@ const router = express.Router();
 router.route('/')
 
     .get(getProjects)
-    .post(createProject)
-    .delete(deleteAllProjects);
+    .post(requireAuth, createProject)
+    .delete(requireAuth, deleteAllProjects);
 
 router.route('/:id')
 
     .get(getProjectById)
-    .put(updateProject)
-    .delete(deleteProject);
+    .put(requireAuth, updateProject)
+    .delete(requireAuth, deleteProject);
 
 export default router;
